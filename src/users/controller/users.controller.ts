@@ -20,6 +20,11 @@ export class UsersController {
     private authService: AuthService
   ) {}
 
+  @Post('/signin')
+  signin(@Body() { email, password }: CreateUserDto) {
+    return this.authService.signin(email, password);
+  }
+
   @Post('/signup')
   createUser(@Body() { email, password }: CreateUserDto) {
     return this.authService.signup(email, password);
