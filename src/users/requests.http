@@ -7,6 +7,15 @@ content-type: application/json
     "password": "123"
 }
 
+### signin user
+POST http://localhost:3000/auth/signin
+content-type: application/json 
+
+{
+    "email": "haha@gmail.com", 
+    "password": "123"
+}
+
 ### find a user with a given ID
 GET http://localhost:3000/auth/4
 
@@ -14,7 +23,7 @@ GET http://localhost:3000/auth/4
 GET http://localhost:3000/auth?email=haha@gmail.com
 
 ### delete a user with a given ID
-DELETE http://localhost:3000/auth/654
+DELETE http://localhost:3000/auth/5
 
 ### updating a user with a given ID
 PATCH http://localhost:3000/auth/4
