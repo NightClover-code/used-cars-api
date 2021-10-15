@@ -2,7 +2,7 @@ import { Test } from '@nestjs/testing';
 import { User } from 'src/users/entities';
 import { AuthService } from '..';
 import { UsersService } from '..';
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -57,5 +57,43 @@ describe('AuthService', () => {
       expect(err).toBeInstanceOf(BadRequestException);
       expect(err.message).toBe('email is already in use');
     }
+  });
+
+  it('throw error if signin is called with unused email', async () => {
+    expect.assertions(2);
+
+    try {
+      await service.signin('ello@gmail.com', 'padnc');
+    } catch (err) {
+      expect(err).toBeInstanceOf(NotFoundException);
+      expect(err.message).toBe('user not found');
+    }
+  });
+
+  it('throws error if invalid password', async () => {
+    fakeUsersService.find = () =>
+      Promise.resolve([
+        { email: 'aisucb@gmail.com', password: 'zldvn' } as User,
+      ]);
+
+    expect.assertions(2);
+
+    try {
+      await service.signin('aisucb@gmail.com', 'zldvn');
+    } catch (err) {
+      expect(err).toBeInstanceOf(BadRequestException);
+      expect(err.message).toBe('Invalid password');
+    }
+  });
+
+  it('returns user if correct user is provided', async () => {
+    fakeUsersService.find = () =>
+      Promise.resolve([
+        { email: 'aisucb@gmail.com', password: 'zldvn' } as User,
+      ]);
+
+    const user = await service.signin('aauob@gmail.com', 'zldvn');
+
+    expect(user).toBeDefined();
   });
 });
