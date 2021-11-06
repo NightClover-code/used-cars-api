@@ -16,8 +16,6 @@ const cookieSession = require('cookie-session');
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
-    UsersModule,
-    ReportsModule,
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
@@ -29,6 +27,8 @@ const cookieSession = require('cookie-session');
         };
       },
     }),
+    UsersModule,
+    ReportsModule,
   ],
   controllers: [AppController],
   providers: [
