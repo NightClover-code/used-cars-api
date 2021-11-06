@@ -16,11 +16,11 @@ describe('Authentication System (e2e)', () => {
   });
 
   it('handles a signup request', async () => {
-    const uniqueEmail = 'zoibv@gmail.com';
+    const uniqueEmail = 'zobcasc@gmail.com';
 
     const res = await request(app.getHttpServer())
       .post('/auth/signup')
-      .send({ uniqueEmail, password: '123' })
+      .send({ email: uniqueEmail, password: '123' })
       .expect(201);
 
     const { email, id } = res.body;
