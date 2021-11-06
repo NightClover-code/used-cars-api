@@ -10,7 +10,7 @@ async function bootstrap() {
       keys: ['iub49hbq995ia09'],
     })
   );
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+
   await app.listen(3000);
 }
 bootstrap();
