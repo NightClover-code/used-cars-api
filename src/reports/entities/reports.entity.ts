@@ -12,6 +12,9 @@ export class Report {
   @Column()
   make: string;
 
+  @Column({ default: false })
+  approved: boolean;
+
   @Column()
   model: string;
 
