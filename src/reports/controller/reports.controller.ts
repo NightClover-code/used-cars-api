@@ -1,15 +1,29 @@
-import { Body, Controller, Param, Patch, UseGuards } from '@nestjs/common';
-import { Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  UseGuards,
+  Query,
+  Post,
+} from '@nestjs/common';
 import { CurrentUser } from 'src/decorators';
 import { AdminGuard, AuthGuard } from 'src/guards';
 import { Serialize } from 'src/interceptors';
 import { User } from 'src/users/entities';
 import { CreateReportDto, ReportDto, ApproveReportDto } from '../dtos';
+import { GetEstimatedDto } from '../dtos/get-estimate.dto';
 import { ReportsService } from '../services';
 
 @Controller('reports')
 export class ReportsController {
   constructor(private reportsService: ReportsService) {}
+
+  @Get()
+  getEstimate(@Query() query: GetEstimatedDto) {
+    console.log(query);
+  }
 
   @Post()
   @UseGuards(AuthGuard)
