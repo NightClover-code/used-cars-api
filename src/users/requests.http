@@ -12,7 +12,7 @@ POST http://localhost:3000/auth/signin
 content-type: application/json 
 
 {
-    "email": "89lice123@gmail.com", 
+    "email": "haha@gmail.com", 
     "password": "123"
 }
 
@@ -20,7 +20,7 @@ content-type: application/json
 POST http://localhost:3000/auth/signout
 
 ### find a user with a given ID
-GET http://localhost:3000/auth/4
+GET http://localhost:3000/auth/1
 
 ### find all users with given email
 GET http://localhost:3000/auth?email=haha@gmail.com
