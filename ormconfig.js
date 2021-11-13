@@ -17,11 +17,16 @@ switch (process.env.NODE_ENV) {
   case 'test':
     Object.assign(dbConfig, {
       type: 'sqlite',
-      database: 'db.sqlite',
-      entities: ['**/*.entity.js'],
+      database: 'test.sqlite',
+      entities: [
+        'src/users/entities/**/*.entity.ts',
+        'src/reports/entities/**/*.entity.ts',
+      ],
+      migrationsRun: true,
     });
     break;
   case 'production':
+    break;
   default:
     throw new Error('unknown environment');
 }

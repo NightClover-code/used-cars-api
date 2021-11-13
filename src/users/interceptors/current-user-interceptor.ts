@@ -5,7 +5,6 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { UsersService } from '../services';
-import { Express } from 'express';
 
 @Injectable()
 export class CurrentUserInterceptor implements NestInterceptor {
