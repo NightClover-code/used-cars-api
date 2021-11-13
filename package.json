@@ -1,10 +1,10 @@
 {
   "name": "used-cars-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "Achraf Elmouhib",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -26,6 +26,7 @@
     "@nestjs/config": "^1.1.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^5.1.4",
     "@nestjs/typeorm": "^8.0.2",
     "@types/cookie-session": "^2.0.43",
     "class-transformer": "^0.4.0",
@@ -37,6 +38,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "sqlite3": "^5.0.2",
+    "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.37"
   },
   "devDependencies": {
