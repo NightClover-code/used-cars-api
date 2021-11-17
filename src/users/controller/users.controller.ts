@@ -16,6 +16,13 @@ import { Serialize } from '../../interceptors';
 import { CurrentUser } from '../../decorators';
 import { User } from '../entities';
 import { AuthGuard } from '../../guards';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -27,16 +34,22 @@ export class UsersController {
 
   @Get('/whoami')
   @UseGuards(AuthGuard)
+  @ApiOkResponse({ description: 'Received current user' })
+  @ApiForbiddenResponse({ description: 'No currently signed in user' })
   whoAmI(@CurrentUser() user: User) {
     return user;
   }
 
   @Post('/signout')
+  @ApiCreatedResponse({ description: 'User is signed out' })
   signOut(@Session() session: any) {
     session.userId = null;
   }
 
   @Post('/signin')
+  @ApiBadRequestResponse({ description: 'Invalid password' })
+  @ApiNotFoundResponse({ description: 'User not found' })
+  @ApiCreatedResponse({ description: 'User is signed in' })
   async signin(
     @Body() { email, password }: CreateUserDto,
     @Session() session: any
@@ -47,6 +60,8 @@ export class UsersController {
   }
 
   @Post('/signup')
+  @ApiBadRequestResponse({ description: 'Email is already in use' })
+  @ApiCreatedResponse({ description: 'User is registred' })
   async createUser(
     @Body() { email, password }: CreateUserDto,
     @Session() session: any
