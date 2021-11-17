@@ -93,7 +93,7 @@ export class UsersController {
   }
 
   @Patch('/:id')
-  @ApiCreatedResponse({ description: 'Updated user with given ID' })
+  @ApiOkResponse({ description: 'Updated user with given ID' })
   @ApiNotFoundResponse({ description: 'No user with given ID' })
   updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
     return this.usersService.update(parseInt(id), body);
