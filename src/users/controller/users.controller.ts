@@ -72,21 +72,29 @@ export class UsersController {
   }
 
   @Get('/:id')
+  @ApiNotFoundResponse({ description: 'No user is signed in' })
+  @ApiBadRequestResponse({ description: 'No user with given ID' })
   findUser(@Param('id') id: string) {
     return this.usersService.findOne(parseInt(id));
   }
 
   @Get()
+  @ApiOkResponse({ description: 'Found all users with given email' })
+  @ApiNotFoundResponse({ description: 'No users with given email' })
   findAllUsers(@Query('email') email: string) {
     return this.usersService.find(email);
   }
 
   @Delete('/:id')
+  @ApiOkResponse({ description: 'Removed user with given ID ' })
+  @ApiNotFoundResponse({ description: 'No user with given ID' })
   removeUser(@Param('id') id: string) {
     return this.usersService.remove(parseInt(id));
   }
 
   @Patch('/:id')
+  @ApiCreatedResponse({ description: 'Updated user with given ID' })
+  @ApiNotFoundResponse({ description: 'No user with given ID' })
   updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
     return this.usersService.update(parseInt(id), body);
   }

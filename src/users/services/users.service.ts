@@ -27,8 +27,13 @@ export class UsersService {
     return user;
   }
 
-  find(email: string) {
-    return this.repo.find({ email });
+  async find(email: string) {
+    const users = await this.repo.find({ email });
+
+    if (!users.length)
+      throw new NotFoundException('No users with given email found');
+
+    return users;
   }
 
   async update(id: number, attrs: Partial<User>) {
