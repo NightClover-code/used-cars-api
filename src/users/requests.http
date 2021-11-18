@@ -29,7 +29,7 @@ GET http://localhost:3000/auth?email=haha@gmail.com
 GET http://localhost:3000/auth/whoami
 
 ### delete a user with a given ID
-DELETE http://localhost:3000/auth/5
+DELETE http://localhost:3000/auth/2
 
 ### updating a user with a given ID
 PATCH http://localhost:3000/auth/2
