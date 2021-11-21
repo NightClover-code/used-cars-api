@@ -23,6 +23,13 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
 } from '@nestjs/swagger';
+import {
+  BadRequestResponse,
+  CreatedResponse,
+  ForbiddenResponse,
+  NotFoundReponse,
+  OkResponse,
+} from 'src/utils';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -34,22 +41,22 @@ export class UsersController {
 
   @Get('/whoami')
   @UseGuards(AuthGuard)
-  @ApiOkResponse({ description: 'Received current user' })
-  @ApiForbiddenResponse({ description: 'No currently signed in user' })
+  @ApiOkResponse({ description: OkResponse.WHOAMI })
+  @ApiForbiddenResponse({ description: ForbiddenResponse.WHOAMI })
   whoAmI(@CurrentUser() user: User) {
     return user;
   }
 
   @Post('/signout')
-  @ApiCreatedResponse({ description: 'User is signed out' })
+  @ApiCreatedResponse({ description: CreatedResponse.SIGNOUT })
   signOut(@Session() session: any) {
     session.userId = null;
   }
 
   @Post('/signin')
-  @ApiBadRequestResponse({ description: 'Invalid password' })
-  @ApiNotFoundResponse({ description: 'User not found' })
-  @ApiCreatedResponse({ description: 'User is signed in' })
+  @ApiBadRequestResponse({ description: BadRequestResponse.SIGNIN })
+  @ApiNotFoundResponse({ description: NotFoundReponse.SIGNIN })
+  @ApiCreatedResponse({ description: CreatedResponse.SIGNIN })
   async signin(
     @Body() { email, password }: CreateUserDto,
     @Session() session: any
@@ -60,8 +67,8 @@ export class UsersController {
   }
 
   @Post('/signup')
-  @ApiBadRequestResponse({ description: 'Email is already in use' })
-  @ApiCreatedResponse({ description: 'User is registred' })
+  @ApiBadRequestResponse({ description: BadRequestResponse.SIGNUP })
+  @ApiCreatedResponse({ description: CreatedResponse.SIGNUP })
   async createUser(
     @Body() { email, password }: CreateUserDto,
     @Session() session: any
@@ -72,29 +79,30 @@ export class UsersController {
   }
 
   @Get('/:id')
-  @ApiNotFoundResponse({ description: 'No user is signed in' })
-  @ApiBadRequestResponse({ description: 'No user with given ID' })
+  @ApiCreatedResponse({ description: NotFoundReponse.FIND_USER })
+  @ApiNotFoundResponse({ description: NotFoundReponse.FIND_USER })
+  @ApiBadRequestResponse({ description: NotFoundReponse.FIND_USER })
   findUser(@Param('id') id: string) {
     return this.usersService.findOne(parseInt(id));
   }
 
   @Get()
-  @ApiOkResponse({ description: 'Found all users with given email' })
-  @ApiNotFoundResponse({ description: 'No users with given email' })
+  @ApiOkResponse({ description: OkResponse.FIND_ALL_USERS })
+  @ApiNotFoundResponse({ description: NotFoundReponse.FIND_ALL_USERS })
   findAllUsers(@Query('email') email: string) {
     return this.usersService.find(email);
   }
 
   @Delete('/:id')
-  @ApiOkResponse({ description: 'Removed user with given ID ' })
-  @ApiNotFoundResponse({ description: 'No user with given ID' })
+  @ApiOkResponse({ description: OkResponse.REMOVE_USER })
+  @ApiNotFoundResponse({ description: NotFoundReponse.REMOVE_USER })
   removeUser(@Param('id') id: string) {
     return this.usersService.remove(parseInt(id));
   }
 
   @Patch('/:id')
-  @ApiOkResponse({ description: 'Updated user with given ID' })
-  @ApiNotFoundResponse({ description: 'No user with given ID' })
+  @ApiOkResponse({ description: OkResponse.UPDATE_USER })
+  @ApiNotFoundResponse({ description: NotFoundReponse.UPDATE_USER })
   updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
     return this.usersService.update(parseInt(id), body);
   }
