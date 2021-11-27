@@ -36,6 +36,6 @@ PATCH http://localhost:3000/auth/2
 content-type: application/json
 
 {
-    "email": "hoho@gmail.com",
+    "email": "hho@gmail.com",
     "password": "qosncoi"
 }
