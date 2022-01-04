@@ -8,8 +8,8 @@ This is a used cars RESTful API built with NestJS. Users can use common auth fea
 
 The main purpose of this project was to learn the fast node.js framework, NestJS. Here are some goals I attained along the way:
 
-- Setup authentication from scratch
-- Encrypt user passwords using a salt and hash
+- Setting up authentication from scratch
+- Encrypting user passwords using a salt and hash
 - Using cookies to signin/signout users from the app
 - Creating a repository from an entity using TypeORM
 - Using DTOs to communicate and validate response data
