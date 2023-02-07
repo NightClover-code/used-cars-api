@@ -41,7 +41,8 @@ This project uses a lot of server technologies such as:
 - NodeJS
 
 ## Author
-
 - [@achrafdev](https://achrafdev.com)
 
-### Thanks for sharing 🚀
+**Thanks for sharing** 🚀
+
+
