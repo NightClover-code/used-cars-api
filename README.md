@@ -40,4 +40,8 @@ This project uses a lot of server technologies such as:
 - Swagger
 - NodeJS
 
-### Have fun coding 🚀
+## Author
+
+- [@achrafdev](https://achrafdev.com)
+
+### Thanks for sharing 🚀
