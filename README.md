@@ -1,6 +1,6 @@
 # Overview
 
-This is a used cars RESTful API built with NestJS - inspired by `Stephen Grider`'s course on Udemy. Users can use common auth features (signin/signup/etc.), as well as submitting reports for an estimate of the car they want to buy. Admins should approve reports before they go public.
+This is a used cars RESTful API built with NestJS - inspired by [@StephenGrider](https://www.udemy.com/user/sgslo/). Users can use common auth features (signin/signup/etc.), as well as submitting reports for an estimate of the car they want to buy. Admins should approve reports before they go public.
 
 ![swagger preview](src/images/preview.png)
 
